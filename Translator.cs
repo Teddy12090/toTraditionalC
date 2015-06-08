@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace toTraditionalC
 {
@@ -12,11 +13,12 @@ namespace toTraditionalC
         public static string Translate(string src)
         {
             UpdateMap();
+            StringBuilder sb = new StringBuilder(src);
             foreach (string[] pair in _map)
             {
                 try
                 {
-                    src = src.Replace(pair[0], pair[1]);
+                    sb.Replace(pair[0], pair[1]);
                 }
                 catch (ArgumentNullException)
                 {
@@ -25,7 +27,7 @@ namespace toTraditionalC
                 {
                 }
             }
-            return src;
+            return sb.ToString();
         }
 
         private static void UpdateMap()
